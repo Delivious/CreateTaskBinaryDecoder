@@ -63,11 +63,35 @@ def decode(message,binary,english):
     for char in message:
         if char in binary:
             decoded += binary[message.index(char)]
-
         else:
             print("a letter failed to load")
     return(decoded)
+def checkBadChars(sentence, english):
+    badCharVar=False
+    for char in sentence:
+        if not(char in english):
+            badCharVar = True
+    return badCharVar
+def encodeFixer(binaryChar):
+    counter=0
+    for char in binaryChar:
+        if counter==4:
+            return binaryChar
+        elif char=="0":
+            counter+=1
+            binaryChar-=binaryChar[binaryChar.index(char)]
+        elif char=="1":
+            counter=4
+        
+def encode(sentence, english, binary):
+    encoded=""
+    for char in sentence:
+        engIndex=english.index(char)
+        binaryChar=binary[engIndex]
+        encoded+=encodeFixer(binaryChar)
+    return encoded
 #body
+print("Welcome to the most simple binary decoder ever! To use the decoder, you will give the name of the file you want to decode(must be in the folder) but must have a 5 character long sequence(0's in front of anything short of 5 chars). It will output a sentence for you! you can also encode messages to binary, but no special characters, numbers, or anything that isnt lowercase letters basically. Have Fun!")
 run = True
 while run:
     userinput=inputer("""What would you like to do, encode/decode/quit:
@@ -81,9 +105,5 @@ while run:
             pass
         else:
             print("Decoding Binary...")
-    elif userinput==2:
+    elif userinput.lower()=="encode":
         userinput=input("What do you want to encode: ")
-    elif userinput == 3:
-        userinput=input("Thanks for useing DigyPY")
-    else:
-       print("a error acured")
