@@ -81,5 +81,9 @@ while run:
             pass
         else:
             print("Decoding Binary...")
-    elif userinput.lower()=="encode":
+    elif userinput==2:
         userinput=input("What do you want to encode: ")
+    elif userinput == 3:
+        userinput=input("Thanks for useing DigyPY")
+    else:
+       print("a error acured")
