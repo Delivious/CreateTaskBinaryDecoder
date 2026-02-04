@@ -74,14 +74,19 @@ def checkBadChars(sentence, english):
     return badCharVar
 def encodeFixer(binaryChar):
     counter=0
-    for char in binaryChar:
+    i=0
+    while counter!=5:
+        
+        newChar=""
         if counter==4:
             return binaryChar
-        elif char=="0":
+        elif binaryChar[i]=="0":
             counter+=1
-            binaryChar-=binaryChar[binaryChar.index(char)]
-        elif char=="1":
-           counter=4
+            newChar=binaryChar[i+1:-2]
+            binaryChar=newChar
+        elif binaryChar[i]=="1":
+            counter=4
+        i+=1
         
 def encode(sentence, english, binary):
     encoded=""
@@ -94,6 +99,7 @@ def encode(sentence, english, binary):
 print("Welcome to the most simple binary decoder ever! To use the decoder, you will give the name of the file you want to decode(must be in the folder) but must have a 5 character long sequence(0's in front of anything short of 5 chars). It will output a sentence for you! you can also encode messages to binary, but no special characters, numbers, or anything that isnt lowercase letters basically. Have Fun!")
 run = True
 while run:
+
     userinput=inputer("""What would you like to do, encode/decode/quit:
 1. encode
 2. decode
@@ -112,4 +118,4 @@ while run:
         userinput=input("Thanks for useing DigyPY")
     else:
        print("a error acured")
-    
+
