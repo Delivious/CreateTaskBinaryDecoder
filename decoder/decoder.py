@@ -11,23 +11,23 @@ def inputer(text,type):
   fail = True
   msg = "Invaled"
   while fail == True:
-    if typee == "bool":
+    if type == "bool":
       try:
         fail = False
-        x = bool(input(letters))
+        x = bool(input(text))
       except ValueError:
         print(msg)
         
-    if typee == "float":
+    if type == "float":
       try:
         fail = False
-        x = float(input(letters))
+        x = float(input(text))
       except ValueError:
         print(msg)
 
-    if typee == "int":
+    if type == "int":
       try:
-        x = int(input(letters))
+        x = int(input(text))
         fail = False
       except ValueError:
         print(msg)
@@ -55,10 +55,8 @@ def retrieveBinary(fileName):
         else:
             print("Error Occured")
             print("Unknown error, please try again.")
+            print(e)
             return False
-def decode(message,binary,english):
-    for char in message:
-        print(9)
 
 def decode(message,binary,english):
     decoded = ""
@@ -72,8 +70,11 @@ def decode(message,binary,english):
 #body
 run = True
 while run:
-    userinput=input("What would you like to do, encode/decode/quit: ")
-    if userinput.lower() == "decode":
+    userinput=inputer("""What would you like to do, encode/decode/quit:
+1. encode
+2. decode
+3. quit""","int")
+    if userinput == 1:
         userinput=input("Please insert file name: ")
         binaryChars=retrieveBinary(userinput)
         if binaryChars==False:
@@ -82,5 +83,3 @@ while run:
             print("Decoding Binary...")
     elif userinput.lower()=="encode":
         userinput=input("What do you want to encode: ")
-
-
