@@ -81,7 +81,7 @@ def encodeFixer(binaryChar):
             counter+=1
             binaryChar-=binaryChar[binaryChar.index(char)]
         elif char=="1":
-            counter=4
+           counter=4
         
 def encode(sentence, english, binary):
     encoded=""
@@ -98,12 +98,18 @@ while run:
 1. encode
 2. decode
 3. quit""","int")
-    if userinput == 1:
+    if userinput == 2:
         userinput=input("Please insert file name: ")
         binaryChars=retrieveBinary(userinput)
         if binaryChars==False:
             pass
-        else:
-            print("Decoding Binary...")
-    elif userinput.lower()=="encode":
+        print(binaryChars)
+        print(f"your decoded message is: {decode(userinput,binary,english)}")
+    elif userinput==1:
         userinput=input("What do you want to encode: ")
+        
+    elif userinput == 3:
+        userinput=input("Thanks for useing DigyPY")
+    else:
+       print("a error acured")
+    
