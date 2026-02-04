@@ -74,14 +74,19 @@ def checkBadChars(sentence, english):
     return badCharVar
 def encodeFixer(binaryChar):
     counter=0
-    for char in binaryChar:
+    i=0
+    while counter!=5:
+        
+        newChar=""
         if counter==4:
             return binaryChar
-        elif char=="0":
+        elif binaryChar[i]=="0":
             counter+=1
-            binaryChar-=binaryChar[binaryChar.index(char)]
-        elif char=="1":
+            newChar=binaryChar[i+1:-2]
+            binaryChar=newChar
+        elif binaryChar[i]=="1":
             counter=4
+        i+=1
         
 def encode(sentence, english, binary):
     encoded=""
@@ -105,7 +110,7 @@ while run:
                 pass
             else:
                 print("Decoding Binary...")
-        elif userinput.lower()=="encode":
+        elif userinput==2:
             userinput=input("What do you want to encode(no numbers): ")
             ifBadChars=checkBadChars(userinput, english)
             if ifBadChars==False:
