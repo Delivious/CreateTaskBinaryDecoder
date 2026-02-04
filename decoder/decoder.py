@@ -30,9 +30,6 @@ def retrieveBinary(fileName):
             print("Error Occured")
             print("Unknown error, please try again.")
             return False
-def decode(message,binary,english):
-    for char in message:
-
 
 def decode(message,binary,english):
     for char in message:
@@ -40,11 +37,35 @@ def decode(message,binary,english):
             binary[message.index(char)]
         else:
             print(False)
-
+def checkBadChars(sentence, english):
+    badCharVar=False
+    for char in sentence:
+        if not(char in english):
+            badCharVar = True
+    return badCharVar
+def encodeFixer(binaryChar):
+    counter=0
+    for char in binaryChar:
+        if counter==4:
+            return binaryChar
+        elif char=="0":
+            counter+=1
+            binaryChar-=binaryChar[binaryChar.index(char)]
+        elif char=="1":
+            counter=4
+        
+def encode(sentence, english, binary):
+    encoded=""
+    for char in sentence:
+        engIndex=english.index(char)
+        binaryChar=binary[engIndex]
+        encoded+=encodeFixer(binaryChar)
+    return encoded
 #body
+print("Welcome to the most simple binary decoder ever! To use the decoder, you will give the name of the file you want to decode(must be in the folder) but must have a 5 character long sequence(0's in front of anything short of 5 chars). It will output a sentence for you! you can also encode messages to binary, but no special characters, numbers, or anything that isnt lowercase letters basically. Have Fun!")
 run = True
 while run:
-    userinput=input("What would you like to do, encode/decode/quit: ")
+    userinput=input("What would you like to do, encode/decode/quit(can type encode/decode to do both at once): ")
     if userinput.lower() == "decode":
         userinput=input("Please insert file name: ")
         binaryChars=retrieveBinary(userinput)
@@ -53,6 +74,13 @@ while run:
         else:
             print("Decoding Binary...")
     elif userinput.lower()=="encode":
-        userinput=input("What do you want to encode: ")
+        userinput=input("What do you want to encode(no numbers): ")
+        ifBadChars=checkBadChars(userinput, english)
+        if ifBadChars==False:
+            binarySentence=encode(userinput, english, binary)
+            print(f"New binary sequence: {binarySentence}")
+        else:
+            print("I said no bad chars")
+
 
 
