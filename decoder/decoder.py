@@ -44,8 +44,6 @@ def retrieveBinary(fileName):
                 for char in line:
                     counter+=1
                     binarySequence+=char
-                    if counter==5:
-                        binarySequence+=" "
             return binarySequence
     except Exception as e:
         if e == FileNotFoundError:
@@ -59,13 +57,26 @@ def retrieveBinary(fileName):
             return False
 
 def decode(message,binary,english):
+    binary_list = []
+    index_count = 0
+    for i in range(0,len(message)-1,5):
+        temp_char=""
+        for k in range(5):
+            temp_char += message[index_count+k]
+        
+        binary_list.append(temp_char)
+        index_count+=5
+    
     decoded = ""
-    for char in message:
+    for char in binary_list:
         if char in binary:
-            decoded += binary[message.index(char)]
+            print(binary_list.index(char))
+            decoded += english[binary.index(char)]
+            print("it worked")
         else:
             print("a letter failed to load")
     return(decoded)
+
 def checkBadChars(sentence, english):
     badCharVar=False
     for char in sentence:
@@ -115,6 +126,7 @@ while run:
         
     elif userinput == 3:
         userinput=input("Thanks for useing DigyPY")
+        exit()
     else:
        print("a error acured")
 
