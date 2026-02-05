@@ -109,8 +109,7 @@ while run:
         binaryChars=retrieveBinary(userinput)
         if binaryChars==False:
             pass
-        print(binaryChars)
-        print(f"your decoded message is: {decode(userinput,binary,english)}")
+        print(f"your decoded message is: {decode(binaryChars,binary,english)}")
     elif userinput==1:
         userinput=input("What do you want to encode: ")
         
