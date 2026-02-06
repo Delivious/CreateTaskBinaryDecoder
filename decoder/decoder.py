@@ -70,9 +70,7 @@ def decode(message,binary,english):
     decoded = ""
     for char in binary_list:
         if char in binary:
-            print(binary_list.index(char))
             decoded += english[binary.index(char)]
-            print("it worked")
         else:
             print("a letter failed to load")
     return(decoded)
